@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Gestion de Empleados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #232f3e;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 220px;
+        }
+        .card h3 {
+            color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema de Gestion de Empleados</h1>
+    <p>Aplicacion web desplegada en AWS con arquitectura de VPC.</p>
+
+    <div class="container">
+        <div class="card">
+            <h3>Servidor Web</h3>
+            <p>Nginx sobre Ubuntu Server (EC2) en Subred Publica</p>
+        </div>
+        <div class="card">
+            <h3>Base de Datos</h3>
+            <p>MariaDB en Subred Privada, solo trafico interno</p>
+        </div>
+        <div class="card">
+            <h3>Seguridad</h3>
+            <p>Security Groups restringidos por puerto y origen</p>
+        </div>
+    </div>
+</body>
+</html>
