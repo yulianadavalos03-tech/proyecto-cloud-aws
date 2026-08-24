@@ -28,7 +28,7 @@ Instalación:
 
 ## Base de Datos
   Instalación del cliente MySQL en la instancia EC2(para conectarse a RDS)
-   sudo apt install mysql-client -y
+   -sudo apt install mysql-client -y
    Motor: MariaDB en Amazon RDS
    Ubicada en subred privada, sin acceso público
    Solo acepta conexiones desde el security group del servidor web
