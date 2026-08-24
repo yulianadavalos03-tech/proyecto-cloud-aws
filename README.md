@@ -2,13 +2,13 @@
   Proyecto de infraestructura en AWS con arquitectura de VPC, subredes públicas/privadas, servidor web y base de datos gestionada.
 
 # Arquitectura
-  **VPC**: 10.0.0.0/16
-  **Subred Pública:** 10.0.4.0/24 (servidor web con IP pública)
-  **Subred Privada:** 10.0.2.0/24 y 10.0.5.0/24-(RDS), (base de datos, sin acceso público)
-  **Internet Gateway:** tabla de rutas de la subred publica, conecta la subred pública a internet
-      Ruta Local: 10.0.0.0/16 --> local
-      Ruta Salida: 0.0.0.0/0 --> Internet Gateway
-  **Security Groups:**
+**VPC**: 10.0.0.0/16
+**Subred Pública:** 10.0.4.0/24 (servidor web con IP pública)
+**Subred Privada:** 10.0.2.0/24 y 10.0.5.0/24-(RDS), (base de datos, sin acceso público)
+**Internet Gateway:** tabla de rutas de la subred publica, conecta la subred pública a internet
+Ruta Local: 10.0.0.0/16 --> local
+Ruta Salida: 0.0.0.0/0 --> Internet Gateway
+**Security Groups:**
      sg-web (servidor web, subred publica)
         -Entrada: SSH (22) origen 0.0.0.0/0 y HTTP (80) origen 0.0.0.0/0
         -Salida: todo el trafico, 0.0.0.0/0
