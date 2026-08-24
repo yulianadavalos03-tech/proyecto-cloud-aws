@@ -3,19 +3,29 @@
 
 # Arquitectura
 **VPC**: 10.0.0.0/16
-**Subred Pública:** 10.0.4.0/24 (servidor web con IP pública)
-**Subred Privada:** 10.0.2.0/24 y 10.0.5.0/24-(RDS), (base de datos, sin acceso público)
-**Internet Gateway:** tabla de rutas de la subred publica, conecta la subred pública a internet
-Ruta Local: 10.0.0.0/16 --> local
-Ruta Salida: 0.0.0.0/0 --> Internet Gateway
-**Security Groups:**
-     sg-web (servidor web, subred publica)
-        -Entrada: SSH (22) origen 0.0.0.0/0 y HTTP (80) origen 0.0.0.0/0
-        -Salida: todo el trafico, 0.0.0.0/0
-     sg-db (base de datos, subred privada)
-        -Entrada: SSH (22) origen sg-web y MySQL/Aurora (3306) origen sg-web
 
-Ver diagrama de arquitectura: diagrama sin titulo.png
+**Subred Pública:** 10.0.4.0/24 (servidor web con IP pública)
+
+**Subred Privada:** 10.0.2.0/24 y 10.0.5.0/24-(RDS), (base de datos, sin acceso público)
+
+**Internet Gateway:** tabla de rutas de la subred publica, conecta la subred pública a internet
+  Ruta Local: 10.0.0.0/16 --> local
+  
+  Ruta Salida: 0.0.0.0/0 --> Internet Gateway
+
+**Security Groups:**
+  
+  sg-web (servidor web, subred publica)
+  
+    Entrada: SSH (22) origen 0.0.0.0/0 y HTTP (80) origen 0.0.0.0/0
+    
+    Salida: todo el trafico, 0.0.0.0/0
+  
+  sg-db (base de datos, subred privada)
+    
+    Entrada: SSH (22) origen sg-web y MySQL/Aurora (3306) origen sg-web
+
+Ver diagrama de arquitectura: diagrama.drawio.png
 
 ## Servidor Web
  Instancia EC2 con Ubuntu Server en subred pública
@@ -23,19 +33,26 @@ Ver diagrama de arquitectura: diagrama sin titulo.png
  Archivo desplegado: 'index.html'
 
 Instalación:
-  sudo apt update 
-  sudo apt install nginx -y
+  
+    sudo apt update 
+  
+    sudo apt install nginx -y
 
 ## Base de Datos
   Instalación del cliente MySQL en la instancia EC2(para conectarse a RDS)
-   -sudo apt install mysql-client -y
+      
+    sudo apt install mysql-client -y
+   
    Motor: MariaDB en Amazon RDS
+   
    Ubicada en subred privada, sin acceso público
+   
    Solo acepta conexiones desde el security group del servidor web
 
   Script de creación: 'script.sql'
-   CREATE TABLE Empleados (id INT PRIMARY KEY, nombre VARCHAR(50));
-   INSERT INTO Empleados (id, nombre) VALUES (1, 'Administrador');
+  
+     CREATE TABLE Empleados (id INT PRIMARY KEY, nombre VARCHAR(50));
+     INSERT INTO Empleados (id, nombre) VALUES (1, 'Administrador');
 
 ## Pasos de despliegue
 1. Diseño del diagrama de arquitectura
