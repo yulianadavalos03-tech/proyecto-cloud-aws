@@ -1,54 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Sistema de Gestion de Empleados</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 40px;
-            text-align: center;
-        }
-        h1 {
-            color: #232f3e;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            width: 220px;
-        }
-        .card h3 {
-            color: #ff9900;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Descubrí tu Próximo Destino</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 40px;
+        text-align: center;
+    }
+    h1 {
+        color: #232f3e;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+    }
+    .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        width: 220px;
+    }
+    .card h3 {
+        color: #ff9900;
+    }
+
+    .gallery {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .gallery .destino {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+        width: 220px;
+        text-align: left;
+    }
+    .gallery .destino h3 {
+        margin: 0 0 8px;
+        color: #ff9900;
+    }
+    .gallery .destino p {
+        margin: 0;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .form-section {
+        background-color: white;
+        max-width: 420px;
+        margin: 50px auto 0;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        text-align: left;
+    }
+    .form-section h2 {
+        color: #232f3e;
+        text-align: center;
+        margin-top: 0;
+    }
+    .form-section label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #333;
+        font-size: 14px;
+    }
+    .form-section input,
+    .form-section textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-family: inherit;
+    }
+    .form-section button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 10px;
+        background-color: #ff9900;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .form-section button:hover {
+        background-color: #e88a00;
+    }
+    #mensaje-confirmacion {
+        display: none;
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #e6f4ea;
+        color: #1e7e34;
+        border-radius: 6px;
+        text-align: center;
+        font-size: 14px;
+    }
+</style>
 </head>
 <body>
-    <h1>Sistema de Gestion de Empleados</h1>
-    <p>Aplicacion web desplegada en AWS con arquitectura de VPC.</p>
+    <h1>Descubrí tu Próximo Destino</h1>
+    <p>Explorá lugares increíbles alrededor del mundo y viví experiencias inolvidables.</p>
 
-    <div class="container">
-        <div class="card">
-            <h3>Servidor Web</h3>
-            <p>Nginx sobre Ubuntu Server (EC2) en Subred Publica</p>
+    <div class="gallery">
+        <div class="destino">
+            <h3>Patagonia, Argentina</h3>
+            <p>Glaciares, montañas y paisajes infinitos en el sur del continente.</p>
         </div>
-        <div class="card">
-            <h3>Base de Datos</h3>
-            <p>MariaDB en Subred Privada, solo trafico interno</p>
+        <div class="destino">
+            <h3>París, Francia</h3>
+            <p>Arte, historia y arquitectura en una de las ciudades más visitadas del mundo.</p>
         </div>
-        <div class="card">
-            <h3>Seguridad</h3>
-            <p>Security Groups restringidos por puerto y origen</p>
+        <div class="destino">
+            <h3>Bali, Indonesia</h3>
+            <p>Playas, templos y naturaleza tropical en un destino ideal para relajarse.</p>
+        </div>
+        <div class="destino">
+            <h3>Nueva York, EE.UU.</h3>
+            <p>La ciudad que nunca duerme, con rascacielos, cultura y vida las 24 horas.</p>
         </div>
     </div>
+
+    <div class="form-section">
+        <h2>Consultá por tu Viaje</h2>
+        <form id="formulario-usuario" onsubmit="return mostrarConfirmacion(event)">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" rows="4" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="mensaje-confirmacion">✔ Datos enviados correctamente (demo visual, no se almacenan)</div>
+    </div>
+
+    <script>
+        function mostrarConfirmacion(event) {
+            event.preventDefault();
+            document.getElementById('mensaje-confirmacion').style.display = 'block';
+            document.getElementById('formulario-usuario').reset();
+            return false;
+        }
+    </script>
 </body>
 </html>
